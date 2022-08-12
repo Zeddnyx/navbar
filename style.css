@@ -1,0 +1,140 @@
+* {
+   padding: 0px;
+   margin: 0px;
+}
+body {
+   font-family: sans-serif;
+   overflow-x: hidden;
+}
+
+nav {
+   display: flex;
+   justify-content: space-around;
+   background-color: #02c544;
+   padding: 15px 0px;
+}
+
+nav h3 {
+   color: #fff;
+}
+
+nav ul {
+   list-style: none;
+   display: flex;
+   justify-content: space-between;
+   width: 40%;
+}
+
+nav ul a {
+   text-decoration: none;
+   color: #ddd;
+}
+nav ul a:hover {
+   color: #fff;
+}
+
+
+
+
+
+/* Toggle navbar *********/
+
+.toggle {
+   display: none;
+   flex-direction: column; /* supaya kebawah */
+   justify-content:  space-between;
+   height:  20px;
+   position: relative;
+}
+
+.toggle input {
+   position: absolute;
+   width: 48px;
+   height: 28px;
+   left: -5px;
+   top: -3px;
+   opacity: 0;
+   cursor: pointer;
+   z-index: 2; /* supaya checkbox nyaada di depan */
+}
+
+.toggle span {
+   display: block;
+   width: 28px;
+   height: 3px;
+   background-color: #ddd;
+   border-radius: 3px;
+   transition: all 0.3s;
+}
+
+
+
+
+
+/*  Hamburger menu animation ****************/
+
+.toggle span:nth-child(2) {
+   transform-origin: 0 0;
+}
+
+.toggle span:nth-child(4) {
+   transform-origin: 0 100%;
+}
+
+
+
+.toggle input:checked ~ span:nth-child(2) {
+   transform: rotate(45deg),  translate(-1px, -1px);
+}
+
+.toggle input:checked ~ span:nth-child(4) {
+   transform: rotate(-45deg), translate(-1px, 0);
+}
+.toggle input:checked ~ span:nth-child(3) {
+   transform: scale(0); /*akan menghilang */
+}
+
+
+
+
+/* Responsive ************************/
+
+/* ukuran Tablet */
+@media screen and ( max-width: 768px ) {
+   nav ul {
+      width: 50%;
+   }
+}
+
+
+/* ukuran smartphone */
+@media screen and ( max-width: 576px ) {
+   nav ul {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 70%;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-evenly;
+      background-color: #02c544;
+      transform: translateX(100%); /* supaya pindah ke kanan tapi jadi bisa di geser ke kiri/kanan  supaya kiri/kanan tidak bisa di geser body nya pake overflow-x: hidden; */
+      transition: all 1s;
+      opacity: 0;
+
+   }
+   /* jika ada ul yg punya class slide maka  transform nya jadi 0 
+    * ini kita buat class slide nya di js 
+    * */
+   nav ul.slide {
+      opacity: 1;
+      transform: translateX(0);
+   }
+
+
+
+
+   .toggle {
+      display: flex;
+   }
+}
